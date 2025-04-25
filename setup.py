@@ -1,20 +1,14 @@
-#!/usr/bin/env python3
-# Copyright (c) Facebook, Inc. and its affiliates.
-#
-# This source code is licensed under the MIT license found in the
-# LICENSE file in the root directory of this source tree.
+from setuptools import setup, find_packages
 
-
-from setuptools import setup
-
-with open("README.md") as f:
+# Read the long description from the README
+with open("README.md", "r", encoding="utf-8") as f:
     readme = f.read()
 
 setup(
     name="BLINK",
     version="0.1.0",
     description="BLINK: Better entity LINKing",
-    url="",  # TODO
+    url="",  # TODO: project URL
     classifiers=[
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
@@ -23,7 +17,7 @@ setup(
     ],
     long_description=readme,
     long_description_content_type="text/markdown",
-    setup_requires=["setuptools>=18.0",],
+    setup_requires=["setuptools>=18.0"],
     install_requires=[
         "torch>=1.2.0",
         "pysolr>=3.8.1",
@@ -40,4 +34,8 @@ setup(
         "termcolor>=1.1.0",
         "faiss-cpu>=1.6.1",
     ],
+    # Only include the blink package
+    packages=find_packages(include=["blink", "blink.*"]),
+    include_package_data=True,
+    python_requires=">=3.6",
 )
